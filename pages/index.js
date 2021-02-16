@@ -18,48 +18,12 @@ export default function Home() {
         <p>
           {timeTalker()}
         </p>
-      </main>
-    </div>
-
-    //初期　参考用に取ってあり、近いうちに削除
-    /*
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <div className={styles.footer}>
+        <a href="https://twitter.com/kisihara_c">🐦</a>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
 
-    */
   )
 }
 
@@ -69,9 +33,9 @@ let timeTalker = (props) => {
   //time:そのまま表示されます
   //workingOrNot:25分カウント時true、5分カウント時falseのブール値です
   //setOrNot:初回起動時のみ使われ、以降ずっとfalseです
-  //これが無いと1秒ごとにコールバックが増え続け減少が加速します
+  //初回判定しないと1秒ごとにコールバックが増え続け減少が加速します
   const [time, setTime] = useState(10);
-  const [workingOrNot, setWorkingOrNot] = useState(true);
+  const [workingOrNot, setWorkingOrNot] = useState(false);
   const [setOrNot, setSetOrNot] = useState(false);
 
   //初回判定
@@ -84,12 +48,23 @@ let timeTalker = (props) => {
   if(time === 0){
     if(workingOrNot===true){
       setWorkingOrNot(false);
-      setTime(5)
+      setTime(300)
     }else{
       setWorkingOrNot(true);
-      setTime(10)
+      setTime(1500)
     }
   }
 
-  return time;
+  let timeDateToString = (n) =>{
+    let r;
+    if(n<60){
+      r = n;
+    }else{
+      r = Math.floor(n / 60) + " : " + (n % 60);
+    }
+    return r;
+    
+  }
+
+  return timeDateToString(time);
 }
