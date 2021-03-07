@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Head from "next/head";
 import Image from "next/image";
+import { AtSignIcon } from '@chakra-ui/icons';
 
 const ContentWrapper = styled.div`
   z-index: 10;
@@ -18,14 +19,14 @@ const ContentWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 72px;
-    height: 72px;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 50%;
 
     .twitter-image {
-      height: 64px;
-      width: 64px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
     }
   }
@@ -100,19 +101,15 @@ const Content = (props) => {
           rel="stylesheet"
         />
       </Head>
-      {/* TODO: twitterリンクのurlと画像を設定してください */}
       <a
         className="twitter-link"
-        href="#"
+        href="https://twitter.com/kisihara_c"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Image
+        <AtSignIcon
           className="twitter-image"
-          src="/twitter-dummy.jpg"
           alt="twitter"
-          width="64"
-          height="64"
         />
       </a>
       <div className="counter">{counterItems}</div>
